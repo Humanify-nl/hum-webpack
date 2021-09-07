@@ -1,0 +1,27 @@
+{
+  "name": "hum-webpack",
+  "version": "1.0.0",
+  "description": "humanify core webpack config",
+  "private": true,
+  "scripts": {
+    "build": "webpack",
+    "watch": "webpack --watch",
+    "prod": "webpack --config webpack.prod.js"
+  },
+  "keywords": [],
+  "author": "Humanify",
+  "license": "GPL-2.0-only",
+  "devDependencies": {
+    "autoprefixer": "^10.3.4",
+    "css-loader": "^6.2.0",
+    "html-webpack-plugin": "^5.3.2",
+    "mini-css-extract-plugin": "^2.2.2",
+    "postcss-loader": "^6.1.1",
+    "resolve-url-loader": "^4.0.0",
+    "sass": "^1.39.0",
+    "sass-loader": "^12.1.0",
+    "style-loader": "^3.2.1",
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0"
+  }
+}
