@@ -13,13 +13,13 @@ Handles all the assets in a modern webpack 5 config for dev and prod
   
 ```
 /src/ OR /dist/
-  - assets /
-    -- js/
-      -- src/  <-- js files here
-    -- css/
-    -- scss/
-    -- icons/
-    -- images/
-    -- fonts/
-    index.html
+-- assets /
+  -- js/
+    -- src/  <-- js files here
+  -- css/
+  -- scss/
+  -- icons/
+  -- images/
+  -- fonts/
+  index.html
 ```  
