@@ -1,4 +1,5 @@
-//import '../css/style.css';
+import './src/global.js';
+import './src/smoothscroll.js';
 import Icon from '../icons/icon.png';
 
 function component() {
