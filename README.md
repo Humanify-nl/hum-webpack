@@ -23,3 +23,5 @@ Handles all the assets in a modern webpack 5 config for dev and prod
   -- fonts/
   index.html
 ```  
+
+Note: you probably won't need index.html for wordpress, just enqueueu the bundle.js.
