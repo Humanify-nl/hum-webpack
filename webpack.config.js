@@ -16,7 +16,9 @@ module.exports = {
   plugins: [
     // generates a new index.html
     new HtmlWebpackPlugin({
+      filename: '../index.html',
       title: 'Development',
+      template: 'index.html'
     }),
     // remove empty .js for css entry points
     new RemoveEmptyScriptsPlugin(),
@@ -97,4 +99,7 @@ module.exports = {
       },
     ],
   },
+  externals: {
+    jquery: 'jQuery'
+  }
 };

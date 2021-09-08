@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
+const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
 //https://webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production
 
 module.exports = {
@@ -17,15 +18,25 @@ module.exports = {
   },
   devtool: 'source-map',
   plugins: [
+
     // generates a new index.html
     new HtmlWebpackPlugin({
+      filename: '../index.html',
       title: 'Production',
+      template: 'index.html'
     }),
+
     // remove empty .js for css entry points
     new RemoveEmptyScriptsPlugin(),
     // extract and write css
     new MiniCssExtractPlugin({
-      filename: 'css/[name].css',
+      filename: 'css/[name].min.css',
+    }),
+    // wordpress dependencies
+    // https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dependency-extraction-webpack-plugin/
+    new DependencyExtractionWebpackPlugin( {
+      injectPolyfill: true,
+      combineAssets: true,
     }),
   ],
   /*
@@ -37,7 +48,6 @@ module.exports = {
     path: path.resolve(__dirname, outputPath + '/' + assetPath),
     clean: true,
     assetModuleFilename: '[path][name][ext]'
-
   },
   optimization: {
     minimizer: [
@@ -64,6 +74,7 @@ module.exports = {
     rules: [
       {
         test: /\.m?js$/,
+        include: ['/src/assets/js/'],
         exclude: /node_modules/,
         use: {
           loader: "babel-loader",
@@ -123,4 +134,7 @@ module.exports = {
       },
     ],
   },
+  externals: {
+    jquery: 'jQuery'
+  }
 };
