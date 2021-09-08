@@ -21,7 +21,7 @@ jQuery(function($){
 		$('.menu-toggle, .nav-menu').removeClass('active');
 		$('.search-toggle, .header-search').toggleClass('active');
 		$('.site-header .search-field').focus();
-		
+
 	});
 
 });
