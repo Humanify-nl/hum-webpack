@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Roboto', sans-serif;
-  src: url('./roboto-regular.ttf') format('ttf'),
-    url('./roboto-regular.ttf') format('ttf');
+  src: url('../fonts/roboto-regular.ttf') format('ttf'),
+    url('../fonts/roboto-regular.ttf') format('ttf');
   font-weight: 400;
   font-style: normal;
 }
@@ -9,5 +9,5 @@
 .hello {
   color: red;
   font-family: 'Roboto', sans-serif;
-  background: url('./icon.png');
+  background: url('../icons/icon.png');
 }
