@@ -6,6 +6,7 @@ const scssPath = assetPath + '/scss';
 const outputPath = 'dist';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const RemoveEmptyScriptsPlugin = require('webpack-remove-empty-scripts');
 
 module.exports = {
   mode: 'development',
@@ -26,9 +27,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'Development',
     }),
+    new RemoveEmptyScriptsPlugin(),
     // handles css
     new MiniCssExtractPlugin({
-      filename: '[name].css',
+      filename: 'assets/css/[name].css',
     }),
   ],
   /*
@@ -36,7 +38,7 @@ module.exports = {
    * https://webpack.js.org/guides/output-management/
    */
   output: {
-    filename: '[name].js',
+    filename: 'assets/js/[name].js',
     path: path.resolve(__dirname, outputPath),
     clean: true,
   },
