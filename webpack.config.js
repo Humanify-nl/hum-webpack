@@ -1,4 +1,9 @@
 const path = require('path');
+const assetPath = './src/assets';
+const jsPath= assetPath + '/js';
+const cssPath = assetPath + '/css';
+const scssPath = assetPath + '/scss';
+const outputPath = 'dist';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
@@ -7,15 +12,15 @@ module.exports = {
   /*
    * entry
    */
-  entry: {
-    index: './src/index.js',
-    main: ['./src/main.js', './src/main.scss'],
-    editor: ['./src/editor.js', './src/editor.scss'],
-  },
+   entry: {
+     bundle: jsPath + '/bundle.js',
+     main: scssPath + '/main.scss',
+     editor: scssPath + '/editor.scss',
+   },
   /*
    * source map for bugfixing bundled resources
    */
-  devtool: 'inline-source-map',
+  //devtool: 'inline-source-map',
   plugins: [
     // generates a new index.html
     new HtmlWebpackPlugin({
@@ -32,7 +37,7 @@ module.exports = {
    */
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, outputPath),
     clean: true,
   },
   /*
@@ -96,14 +101,14 @@ module.exports = {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'images/[name][ext]'
+          filename: 'assets/images/[name][ext]'
         }
       },
       {
         test: /\.(woff|woff2|eot|ttf|otf)$/i,
         type: 'asset/resource',
         generator: {
-          filename: 'fonts/[name][ext]'
+          filename: 'assets/fonts/[name][ext]'
         }
       },
     ],
