@@ -25,5 +25,5 @@ Handles all the assets in a modern webpack 5 config for dev and prod
 ```  
 
 Notes:
-- You probably won't need index.html for wordpress, just enqueue the bundle.js.
+- You probably won't need index.html for wordpress, just enqueue the bundle.js, main.css & editor.css
 - Jquery is assumed to be handled by wordpress itself, if not; add the script as per your preferences.
