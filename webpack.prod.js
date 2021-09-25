@@ -1,6 +1,7 @@
 const path = require('path');
+const sourcePath = path.join(__dirname, '/src');
+const outputPath = path.join(__dirname, '/dist');
 const assetPath = 'assets';
-const outputPath = 'dist';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
@@ -9,7 +10,7 @@ const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extrac
 //https://webpack.js.org/plugins/mini-css-extract-plugin/#minimizing-for-production
 
 module.exports = {
-  context: path.resolve(__dirname, 'src/' + assetPath),
+  context: path.join(sourcePath, assetPath),
   mode: 'production',
   entry: {
     bundle: '/js' + '/bundle.js',
@@ -32,12 +33,14 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: 'css/[name].min.css',
     }),
+    /*
     // wordpress dependencies
     // https://developer.wordpress.org/block-editor/reference-guides/packages/packages-dependency-extraction-webpack-plugin/
     new DependencyExtractionWebpackPlugin( {
       injectPolyfill: true,
       combineAssets: true,
     }),
+    */
   ],
   /*
    * output management
@@ -45,13 +48,15 @@ module.exports = {
    */
   output: {
     filename: 'js/[name].js',
-    path: path.resolve(__dirname, outputPath + '/' + assetPath),
-    clean: true,
+    path: path.join(outputPath, assetPath),
+    clean: {
+      keep: /acf-json/,
+    },
     assetModuleFilename: '[path][name][ext]'
   },
   optimization: {
     minimizer: [
-      // For webpack@5 you can use the `...` syntax to extend existing minimizers (i.e. `terser-webpack-plugin`), uncomment the next line
+      // webpack@5 use the `...` to extend existing minimizers
       `...`,
       new CssMinimizerPlugin({
         minimizerOptions: {
@@ -108,7 +113,17 @@ module.exports = {
             loader: 'postcss-loader',
             options: {
               sourceMap: true,
-            }
+              postcssOptions: {
+                plugins: [
+                  [
+                    "postcss-preset-env",
+                    {
+                      // Options
+                    },
+                  ],
+                ],
+              },
+            },
           },
           {
             // Dart sass compiler
